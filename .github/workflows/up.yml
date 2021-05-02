@@ -1,0 +1,58 @@
+#
+# This is free software, lisence use MIT.
+#
+# Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
+#
+# <https://github.com/KFERMercer/OpenWrt-CI>
+#
+
+name: Merge-upstream
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: true
+        default: 'true'
+  push:
+    branches:
+      - master
+#    paths:
+#      - 'x64.config'
+  schedule:
+    - cron: '50/30 * * * *'
+#  watch:
+#    types: [started]
+
+jobs:
+  merge:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        ref: master
+        fetch-depth: 0
+        lfs: true
+
+    - name: Set git identity
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "actions"
+    - name: Sync Packages
+      run: ./up.sh
+
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
