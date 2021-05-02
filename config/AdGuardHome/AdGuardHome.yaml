@@ -1,0 +1,158 @@
+#用户名root 密码password
+#默认禁用ipv6解析
+bind_host: 0.0.0.0
+bind_port: 3000
+users:
+- name: root
+  password: $2y$10$HMu4uxxdZ6hnRKgwbxbjgO6aSKIGbJIcmGXtp6p1Y97FfttNCy2yS
+http_proxy: ""
+language: zh-tw
+rlimit_nofile: 0
+debug_pprof: false
+web_session_ttl: 720
+dns:
+  bind_host: 0.0.0.0
+  port: 5333
+  statistics_interval: 30
+  querylog_enabled: true
+  querylog_interval: 7
+  querylog_size_memory: 1000
+  anonymize_client_ip: false
+  protection_enabled: true
+  blocking_mode: default
+  blocking_ipv4: ""
+  blocking_ipv6: ""
+  blocked_response_ttl: 300
+  parental_block_host: family-block.dns.adguard.com
+  safebrowsing_block_host: standard-block.dns.adguard.com
+  ratelimit: 0
+  ratelimit_whitelist: []
+  refuse_any: true
+  upstream_dns:
+  - https://dns.quad9.net/dns-query
+  - https://dns.cloudflare.com/dns-query
+  bootstrap_dns:
+  - 114.114.114.114
+  - 119.29.29.29
+  all_servers: false
+  fastest_addr: true
+  allowed_clients: []
+  disallowed_clients: []
+  blocked_hosts: []
+  cache_size: 4194304
+  cache_ttl_min: 900
+  cache_ttl_max: 86000
+  bogus_nxdomain: []
+  aaaa_disabled: true
+  enable_dnssec: false
+  edns_client_subnet: false
+  filtering_enabled: true
+  filters_update_interval: 24
+  parental_enabled: false
+  safesearch_enabled: false
+  safebrowsing_enabled: false
+  safebrowsing_cache_size: 1048576
+  safesearch_cache_size: 1048576
+  parental_cache_size: 1048576
+  cache_time: 86000
+  rewrites:
+  - domain: dns.cloudflare.com
+    answer: 1.1.1.1
+  - domain: dns.cloudflare.com
+    answer: 1.0.0.1
+  - domain: dns9.quad9.net
+    answer: 9.9.9.10
+  - domain: dns9.quad9.net
+    answer: 149.112.112.10
+  - domain: dns.alidns.com
+    answer: 223.5.5.5
+  - domain: dns.alidns.com
+    answer: 223.6.6.6
+  - domain: dns.alidns.com
+    answer: 2400:3200::1
+  - domain: dns.alidns.com
+    answer: 2400:3200:baba::1
+  - domain: dns.quad9.net
+    answer: 9.9.9.10
+  - domain: dns.quad9.net
+    answer: 149.112.112.10
+  - domain: '*.apple.cn'
+    answer: '*.apple.com'
+  - domain: '*.google.cn'
+    answer: '*.google.com'
+  - domain: '*.googleapis.cn'
+    answer: '*.googleapis.com'
+  - domain: '*.g.cn'
+    answer: www.google.com
+  - domain: www.google.com.hk
+    answer: www.google.com
+  blocked_services: []
+tls:
+  enabled: false
+  server_name: ""
+  force_https: false
+  port_https: 443
+  port_dns_over_tls: 853
+  allow_unencrypted_doh: false
+  strict_sni_check: false
+  certificate_chain: ""
+  private_key: ""
+  certificate_path: ""
+  private_key_path: ""
+filters:
+- enabled: false
+  url: https://files.huayu.workers.dev/0:/adg.txt
+  name: My
+  id: 001
+- enabled: true
+  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+  name: AdGuard Simplified Domain Names filter
+  id: 100
+- enabled: true
+  url: https://adaway.org/hosts.txt
+  name: AdAway
+  id: 200
+- enabled: true
+  url: https://easylist-downloads.adblockplus.org/antiadblockfilters.txt
+  name: Adblock Warning Removal List
+  id: 300
+- enabled: true
+  url: https://fanboy.co.nz/fanboy-problematic-sites.txt
+  name: Fanboy's problematic-sites
+  id: 400
+- enabled: true
+  url: https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/ABP-FX.txt
+  name: ABP-FX
+  id: 500
+- enabled: true
+  url: https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/lazy.txt
+  name: lazy.txt
+  id: 600
+- enabled: true
+  url: https://raw.githubusercontent.com/vokins/yhosts/master/hosts
+  name: yhosts
+  id: 700
+- enabled: true
+  url: http://sub.adtchrome.com/adt-chinalist-easylist.txt
+  name: ChinaList+EasyList(修正)
+  id: 800
+- enabled: false
+  url: https://raw.githubusercontent.com/missdeer/blocklist/master/toblock-without-shorturl.lst
+  name: toblock-without-shorturl
+  id: 900
+whitelist_filters: []
+user_rules:
+- ""
+dhcp:
+  enabled: false
+  interface_name: ""
+  gateway_ip: ""
+  subnet_mask: ""
+  range_start: ""
+  range_end: ""
+  lease_duration: 86400
+  icmp_timeout_msec: 1000
+clients: []
+log_file: ""
+verbose: false
+schema_version: 6
